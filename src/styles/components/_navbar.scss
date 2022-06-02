@@ -1,0 +1,30 @@
+nav{
+    display: flex;
+    width: 95vw;
+    margin: 1rem auto;
+    align-items: center;
+    a{
+        text-decoration: none;    
+        color:black;
+    }
+    .leftSide_navbar{
+        flex:0.2;
+        h4{
+            cursor: pointer;
+            font-size: 2rem;
+        }
+    }
+    .rightSide_navbar{
+        flex:0.8;
+        display: flex;
+        justify-content: flex-end;
+        .rightSide_navbarItem{
+            cursor: pointer;
+            margin-right: 0.2rem;
+            padding: 0.3rem;
+            &:hover{
+                font-weight: bold;
+            }
+        }
+    }
+}
