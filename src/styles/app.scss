@@ -1,5 +1,9 @@
-@import './categoryItem';
+@import './containers/categoryItem';
 @import './components/navbar';
+@import './components/customButton';
+@import './components/inputData';
+@import './Screens/signInUp';
+@import './components/footer';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 *{
@@ -7,5 +11,45 @@
     padding: 0;
     margin: 0;
     font-family: 'Roboto Condensed', sans-serif;
+    font-size: 62.7%;
+    @media screen and (max-width:1024px) {
+        font-size: 55%;
+    }
+    @media screen and (max-width:768px) {
+        font-size: 43%;
+    }
+}
+h1{
+    font-size: 3.6rem;
+}
+h2{
+    font-size: 3.2rem;
+}
+h3{
+    font-size: 2.8rem;
+}
+h4{
+    font-size: 2.4rem;
+}
+h5{
+    font-size: 2rem;
+}
+h6{
+    font-size: 1.8rem;
+}
+p{
+    font-size: 1.6rem;
+}
 
+
+.App{
+    display: flex;
+    flex-direction: column;
+    Routes{
+        .screens{
+            min-height: 80vh;
+            width:90vw;
+            margin: 1rem auto;
+        }
+    }
 }

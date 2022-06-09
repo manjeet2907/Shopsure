@@ -1,0 +1,14 @@
+.footer{
+    border-top: 1rem solid rgb(173, 123, 123);
+    text-align: center;
+    transition: 2s all ease-in-out;
+    height: 3rem;
+    h5{
+        font-size: 2rem;
+        padding-bottom: 1rem;
+
+    }
+    &:hover{
+        border-top: 2rem solid rgb(173, 123, 123);
+    }
+}

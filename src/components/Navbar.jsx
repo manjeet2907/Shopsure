@@ -7,7 +7,7 @@ const Navbar = () => {
       <nav>
         <div className='leftSide_navbar'>
           <Link to='/'>
-            <h4>ShopSure</h4>
+            <h3>ShopSure</h3>
           </Link>
         </div>
         <div className='rightSide_navbar'>

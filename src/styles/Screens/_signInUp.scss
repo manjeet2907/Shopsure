@@ -1,0 +1,10 @@
+.signin_Page{
+    display: flex;
+    width:70vw;
+    margin: auto;
+    justify-content: space-between;
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+}

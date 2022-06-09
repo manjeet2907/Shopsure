@@ -1,0 +1,21 @@
+.inputData{
+    display: flex;
+    flex-direction: column;
+    input {
+        font-size: 1.4rem;
+        color: black;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+        margin: 1rem;
+    }
+
+    label {
+        font-size: 1.8rem;
+    }
+
+    .file_wrap {
+        display: flex;
+    }
+
+
+}
