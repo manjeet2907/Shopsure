@@ -8,6 +8,7 @@ const InputData = ({
   actionOnClick,
   value,
   idlabel,
+  name,
 }) => {
   return (
     <div className='inputData'>
@@ -19,6 +20,7 @@ const InputData = ({
         value={value}
         onChange={actionOnChange}
         onClick={actionOnClick}
+        name={name}
       />
     </div>
   );

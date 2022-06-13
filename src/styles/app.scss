@@ -4,6 +4,7 @@
 @import './components/inputData';
 @import './Screens/signInUp';
 @import './components/footer';
+@import './containers/signin';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 *{
@@ -45,11 +46,10 @@ p{
 .App{
     display: flex;
     flex-direction: column;
-    Routes{
+    justify-content: space-between;
         .screens{
             min-height: 80vh;
             width:90vw;
             margin: 1rem auto;
         }
     }
-}

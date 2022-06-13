@@ -1,51 +1,67 @@
 import React, { useState } from "react";
 import { Button, InputData } from "../components";
-// import InputData from "./InputData";
-// import { auth, createUserProfileDocument } from "../../firebase";
+import {
+  createAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
+} from "../utils/firebase/firebase.utils";
+
+// we will set all initial values of all the input field here
+const defaultFormFields = {
+  displayName: "",
+  email: "",
+  password: "",
+  conpassword: "",
+};
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [conpassword, setConPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  // use useState hook and the initial values set in above as the default values
+  const [formFields, setFormFields] = useState(defaultFormFields);
+
+  // destrcture the input fields from form fields
+  const { displayName, email, password, conpassword } = formFields;
+
+  // add a generic function to handle all the changes in input and setting them
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
+
   // const [pic, setPic] = useState('')
 
-  const signupFunc = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (password !== conpassword) {
-    //   alert("password does not match");
-    //   return;
-    // }
-    // try {
-    //   const { user } = await auth.createUserWithEmailAndPassword(
-    //     email,
-    //     password
-    //   );
-    //   await createUserProfileDocument(user, { displayName });
-    //   setEmail("");
-    //   setPassword("");
-    //   setConPassword("");
-    //   setDisplayName("");
-    //   // setPic('')
-    // } catch (error) {
-    //   console.error(error);
-    //   alert(error);
-    // }
+    // check if both password matches
+    if (password !== conpassword) {
+      alert("password does not match");
+      return;
+    }
+    try {
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserDocumentFromAuth(user, { displayName });
+      setFormFields(defaultFormFields);
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
   };
 
   return (
-    <div>
+    <div className='signUp'>
       <h3>I don't have an account</h3>
       <h3>Sign Up</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputData
           value={displayName}
           label='Full Name'
           placeholder='Enter Your Name'
           required
           type='text'
-          actionOnChange={(e) => setDisplayName(e.target.value)}
+          actionOnChange={handleChange}
+          name='displayName'
         />
         <InputData
           value={email}
@@ -53,7 +69,8 @@ const SignUp = () => {
           placeholder='Enter Your Email'
           required
           type='email'
-          actionOnChange={(e) => setEmail(e.target.value)}
+          actionOnChange={handleChange}
+          name='email'
         />
         <InputData
           value={password}
@@ -61,7 +78,8 @@ const SignUp = () => {
           placeholder='Enter Your Password'
           required
           type='password'
-          actionOnChange={(e) => setPassword(e.target.value)}
+          actionOnChange={handleChange}
+          name='password'
         />
         <InputData
           value={conpassword}
@@ -69,10 +87,11 @@ const SignUp = () => {
           placeholder='Confirm Your Password'
           required
           type='password'
-          actionOnChange={(e) => setConPassword(e.target.value)}
+          actionOnChange={handleChange}
+          name='conpassword'
         />
         <div className='actions'>
-          <Button Button='Sign up' action={signupFunc} />
+          <Button Button='Sign up' action={handleSubmit} />
         </div>
       </form>
     </div>
