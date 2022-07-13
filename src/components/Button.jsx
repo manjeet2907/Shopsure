@@ -1,12 +1,16 @@
 import React from "react";
+const buttonStyles = {
+  google: "google-sign-in",
+  inverted: "inverted",
+};
 
-const Button = ({ Button, action, isGoogleSignIn }) => {
+const Button = ({ children, buttonType, ...otherProps }) => {
   return (
     <div>
       <button
-        className={`${isGoogleSignIn ? "google_sign_in" : ""} customButton`}
-        onClick={action}>
-        {Button}
+        className={`button-container ${buttonStyles[buttonType]}`}
+        {...otherProps}>
+        {children}
       </button>
     </div>
   );

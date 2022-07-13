@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import CartIcon from "../containers/CartIcon";
+import { UserContext } from "../contexts/userContext";
+import { signOutUser } from "../utils/firebase/firebase.utils";
 
 const Navbar = () => {
+  const { currentUser } = useContext(UserContext);
+
   return (
     <div className='navbar'>
       <nav>
@@ -18,10 +23,16 @@ const Navbar = () => {
             <Link to='/contact'>Contact</Link>
           </div>
           <div className='rightSide_navbarItem'>
-            <Link to='/auth'>Sign In</Link>
+            {currentUser ? (
+              <Link to='/auth' className='sout' onClick={signOutUser}>
+                Sign Out
+              </Link>
+            ) : (
+              <Link to='/auth'>Sign In</Link>
+            )}
           </div>
           <div className='rightSide_navbarItem'>
-            <Link to='/cart'>Cart</Link>
+            <CartIcon />
           </div>
         </div>
       </nav>

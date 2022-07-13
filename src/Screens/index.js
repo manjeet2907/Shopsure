@@ -1,7 +1,7 @@
 import Home from "./Home";
-import Cart from "./Cart";
+import Checkout from "./Checkout";
 import Shop from "./Shop";
 import Contact from "./Contact";
 import Authentication from "./Authentication";
 
-export { Home, Cart, Shop, Authentication, Contact };
+export { Home, Checkout, Shop, Authentication, Contact };

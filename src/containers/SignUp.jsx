@@ -5,6 +5,8 @@ import {
   createUserDocumentFromAuth,
 } from "../utils/firebase/firebase.utils";
 
+// import { UserContext } from "../contexts/userContext";
+
 // we will set all initial values of all the input field here
 const defaultFormFields = {
   displayName: "",
@@ -21,11 +23,7 @@ const SignUp = () => {
   const { displayName, email, password, conpassword } = formFields;
 
   // add a generic function to handle all the changes in input and setting them
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
-  };
-
+  // const { setCurrentUser } = useContext(UserContext);
   // const [pic, setPic] = useState('')
 
   const handleSubmit = async (e) => {
@@ -44,11 +42,18 @@ const SignUp = () => {
       await createUserDocumentFromAuth(user, { displayName });
       setFormFields(defaultFormFields);
     } catch (error) {
-      console.error(error);
-      alert(error);
+      if (error.code === "auth/email-already-in-use") {
+        alert("Cannot create user, email already in use");
+      } else {
+        console.log("user creation encountered an error", error);
+      }
     }
   };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
   return (
     <div className='signUp'>
       <h3>I don't have an account</h3>
@@ -91,7 +96,7 @@ const SignUp = () => {
           name='conpassword'
         />
         <div className='actions'>
-          <Button Button='Sign up' action={handleSubmit} />
+          <Button onClick={handleSubmit}>Sign up</Button>
         </div>
       </form>
     </div>

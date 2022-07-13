@@ -1,0 +1,73 @@
+.shop_page{
+    display: flex;
+    flex-direction: column;
+    h1{
+        text-align: center;
+        border-bottom:.3rem solid yellowgreen;
+        margin-bottom: 2rem;
+    }
+    .item_Cat_list{
+        display: flex;
+        flex-direction: column;
+        .item_list{
+            display: flex;
+            overflow-x:scroll;
+            height: fit-content;
+
+            .item{
+                margin: 1rem;
+                .img{
+                    position: relative;
+                    overflow: hidden;
+                    object-fit: cover;
+                    object-position:center;
+
+                    img{
+                        width:25rem;
+                        height: 25rem;
+                        transition: 1s all cubic-bezier(0.19, 1, 0.22, 1);
+                        &:hover{
+                            opacity: 0.9;
+                            transform: scale(1.1);
+                        }
+                    }
+                    .action{
+                        display: none;
+                        position: absolute;
+                        bottom: 2rem;
+                        left:50%;
+                        font-size: 1.5rem;
+                        transform: translateX(-50%);
+                        padding: 0.5rem 1rem;
+                        border-radius: 1rem;
+                        // background-color: rgba(245,245,245,0.7);
+                        // outline: none;
+                        // height:5rem;
+                        // width: 10rem;
+                        // font-weight: 500;
+                    }
+                    &:hover{
+                        .action{
+                            display: block;
+                            cursor: pointer;
+                            &:hover{
+                            background-color: rgba(59, 57, 57, 0.7);
+                            color: beige;
+
+                            }
+                        }
+
+                    }
+                }
+                .details{
+                    display: flex;
+                    justify-content: space-between;
+                    p{
+                        font-weight: 500;
+                    }
+                }
+
+            }
+        }
+    }
+}

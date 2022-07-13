@@ -25,6 +25,12 @@ nav{
             cursor: pointer;
             margin-right: 0.2rem;
             padding: 0.3rem;
+            .sout{
+            text-decoration: none;    
+            color:black;
+            font-size: 1.8rem;
+            padding: 1rem;
+            }
             &:hover{
                 font-weight: bold;
             }

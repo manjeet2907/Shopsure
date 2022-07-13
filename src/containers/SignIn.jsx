@@ -2,40 +2,69 @@ import React, { useState } from "react";
 import { Button, InputData } from "../components";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signinWithEP,
+  signinAuthWithEP,
 } from "../utils/firebase/firebase.utils";
 
-const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+// import { UserContext } from "../contexts/userContext";
 
-  const signInWithEP = async (e) => {
-    e.preventDefault();
-    await signinWithEP();
-  };
+// default form fields
+const defaultFormFields = {
+  email: "",
+  password: "",
+};
+
+const SignIn = () => {
+  const [formField, setFormField] = useState(defaultFormFields);
+
+  const { email, password } = formField;
+
+  // as this component needs the state we will use Context here
+  // const { setCurrentUser } = useContext(UserContext);
+
   // sign In code will go here
   // two meathods for signin Google and Email
-  const SignInWithGoogle = async (e) => {
-    e.preventDefault();
+  const SignInWithGoogleeee = async () => {
     await signInWithGooglePopup();
-    const userDoc = await createUserDocumentFromAuth();
-    console.log(userDoc);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await signinAuthWithEP(email, password);
+      setFormField(defaultFormFields);
+    } catch (error) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          alert("incorrect password for email");
+          break;
+        case "auth/user-not-found":
+          alert("no user associated with this email");
+          break;
+        default:
+          console.log(error);
+      }
+    }
+  };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormField({ ...formField, [name]: value });
+  };
   // end of SignIn code
+
   return (
     <div className='sign_in'>
-      <h3>I already have an account</h3>
+      <h3>Already have an account</h3>
       <h3>Sign In to your Account</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputData
           value={email}
           label='Email'
           idlabel='sEmail'
           placeholder='Enter Your Email'
           type='email'
-          actionOnChange={(e) => setEmail(e.target.value)}
+          name='email'
+          actionOnChange={handleChange}
         />
         <InputData
           value={password}
@@ -43,15 +72,17 @@ const SignIn = () => {
           idlabel='sPassword'
           placeholder='Enter Your Password'
           type='password'
-          actionOnChange={(e) => setPassword(e.target.value)}
+          name='password'
+          actionOnChange={handleChange}
         />
         <div className='actions'>
-          <Button Button='Sign In' onclick={signInWithEP} />
+          <Button type='submit'>Sign In</Button>
           <Button
-            Button='Sign In With Google'
-            isGoogleSignIn={true}
-            onclick={SignInWithGoogle}
-          />
+            buttonType='google'
+            onClick={SignInWithGoogleeee}
+            type='button'>
+            Sign In with Google
+          </Button>
         </div>
       </form>
     </div>

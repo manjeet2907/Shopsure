@@ -1,0 +1,22 @@
+.contactUs{
+    h1{
+        text-align: center;
+        border-bottom: .2rem solid gray;
+    }
+    .about_us{
+        margin-top: 4rem;
+      
+        p{
+            margin-top: 3rem;
+        }
+    }
+    .contact_dets{
+        display: flex;
+        align-items: center;
+        h3{
+            border-right: .1rem solid black;
+            margin-right: 2rem;
+            padding: 2rem;
+        }
+    }
+}

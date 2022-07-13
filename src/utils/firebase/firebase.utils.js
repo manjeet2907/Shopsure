@@ -1,10 +1,13 @@
 import { initializeApp } from "firebase/app";
+
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 // get Auth to get the auth Functionality,
 // signInWithPopup to avail Popup sigin functionality
@@ -28,27 +31,28 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase- this will initialize the app with the above mentioned values
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
 // We initialize a instance of GoogleAuthProvider Class provided by firebase for every auth method we intend to use
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-export const signInWithGooglePopup = signInWithPopup(auth, provider);
+export const auth = getAuth();
 
-// in order to use the firestore we need the following steps
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+
+// in order to use the firestore(firebase data storage services) we need the following steps
 // export default firebaseApp;
-export const db = getFirestore(app);
+export const db = getFirestore();
 
 // create the function
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInformation
+  additionalInformation = {}
 ) => {
-  console.log(userAuth);
   if (!userAuth) {
     return;
   }
@@ -74,12 +78,11 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log(error);
+      console.log("error creating user", error.message);
     }
-  } else {
-    // if the instance of userData Exists
-    return userDocRef;
   }
+  // if the instance of userData Exists
+  return userDocRef;
 };
 
 // signUp or create user with Email and password
@@ -90,9 +93,15 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signinWithEP = async (email, password) => {
+export const signinAuthWithEP = async (email, password) => {
   if (!email || !password) {
     return;
   }
   return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangeListner = async (callback) => {
+  await onAuthStateChanged(auth, callback);
 };
