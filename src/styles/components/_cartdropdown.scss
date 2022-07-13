@@ -1,0 +1,42 @@
+.cartDropdown_container {
+  position: absolute;
+  width: 25rem;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: whitesmoke;
+  top: 8rem;
+  right: 4rem;
+  z-index: 5;
+  // overflow: hidden;
+  .empty-message {
+    font-size: 18px;
+    margin: 50px auto;
+  }
+
+  .cartItems {
+    min-height: 24rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    // overflow: scroll;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .checkoutbutton{
+      font-size: 1.5rem;
+      font-weight: bold;
+      
+      
+    }
+    
+  }
+}

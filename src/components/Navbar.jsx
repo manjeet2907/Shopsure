@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartIcon from "../containers/CartIcon";
+import CartDropdown from "../components/CartDropdown";
 import { UserContext } from "../contexts/userContext";
+import { CartContext } from "../contexts/cartContext";
 import { signOutUser } from "../utils/firebase/firebase.utils";
 
 const Navbar = () => {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
   return (
     <div className='navbar'>
@@ -34,6 +37,9 @@ const Navbar = () => {
           <div className='rightSide_navbarItem'>
             <CartIcon />
           </div>
+        </div>
+        <div className='rightSide_navbarItem'>
+          {isCartOpen && <CartDropdown />}
         </div>
       </nav>
     </div>

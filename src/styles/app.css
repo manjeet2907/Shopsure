@@ -373,6 +373,94 @@ nav .rightSide_navbar .rightSide_navbarItem:hover {
   font-weight: 500;
 }
 
+.cartIcon_Container {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  top: -1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.cartIcon_Container .shoppingIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.cartIcon_Container .itemCount {
+  position: absolute;
+  font-size: 10px;
+  font-weight: bold;
+  bottom: 12px;
+}
+
+.cartDropdown_container {
+  position: absolute;
+  width: 25rem;
+  height: 35rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: whitesmoke;
+  top: 8rem;
+  right: 4rem;
+  z-index: 5;
+}
+
+.cartDropdown_container .empty-message {
+  font-size: 18px;
+  margin: 50px auto;
+}
+
+.cartDropdown_container .cartItems {
+  min-height: 24rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 1.2rem;
+}
+
+.cartDropdown_container button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cartDropdown_container button .checkoutbutton {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
