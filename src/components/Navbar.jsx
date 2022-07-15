@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import CartIcon from "../containers/CartIcon";
-import CartDropdown from "../components/CartDropdown";
+import CartIcon from "./CartIcon";
+import { CartDropdown } from "../containers";
 import { UserContext } from "../contexts/userContext";
 import { CartContext } from "../contexts/cartContext";
 import { signOutUser } from "../utils/firebase/firebase.utils";
