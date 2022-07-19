@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+// import { createAction } from "./utils/reducer";
+import { useDispatch } from "react-redux/es/exports";
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangeListner,
+} from "./utils/firebase/firebase.utils";
 import { Route, Routes } from "react-router-dom";
 import { Navbar, Footer } from "./components";
 import { Home, Checkout, Shop, Authentication, Contact } from "./Screens";
 import "./styles/app.css";
+import { setCurrentUser } from "./reducers/user/userAction";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangeListner((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+      dispatch(setCurrentUser(user));
+    });
+
+    // return unsubscribe;
+  }, []);
+
   return (
     <div className='App'>
       <Navbar />

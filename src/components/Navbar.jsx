@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
 import { CartDropdown } from "../containers";
-import { UserContext } from "../contexts/userContext";
-import { CartContext } from "../contexts/cartContext";
+// import { UserContext } from "../contexts/userContext";
+// import { CartContext } from "../contexts/cartContext";
 import { signOutUser } from "../utils/firebase/firebase.utils";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { selectCurrentUser } from "../reducers/user/userSelector";
+import { selectIsCartOpen } from "../reducers/cart/cartSelector";
 
 const Navbar = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
+
+  // const { isCartOpen } = useContext(CartContext);
 
   return (
     <div className='navbar'>
