@@ -7,6 +7,7 @@ import {
   selectCartCount,
   selectIsCartOpen,
 } from "../reducers/cart/cartSelector";
+
 import { setIsCartOpen } from "../reducers/cart/cartAction";
 // import { CartContext } from "../contexts/cartContext";
 

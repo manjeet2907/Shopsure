@@ -6,13 +6,13 @@ const Contact = () => {
       <h1>Don't think twice, Reach Out To Us Now</h1>
       <div className='about_us'>
         <h3>ABOUT US</h3>
-        <p>
+        <h6>
           At aLL, we know fashion is about flaunting yourself with confidence,
           no matter who you are. Launched in 2016, we are dedicated to produce
           free-flowing. incredibly comfortable and fashionable accessories that
           houses from western to ethnic wear and accessories that make you look
           sexy, cool and confident.
-        </p>
+        </h6>
       </div>
 
       <div className='contact_dets'>

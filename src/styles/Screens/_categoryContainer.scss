@@ -1,0 +1,21 @@
+.category__container{   
+    .single_category-container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+    @media screen and (max-width:768px) {
+        .single_category-container{
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 2rem;
+            row-gap: 3rem;
+        }
+    }
+    @media screen and (max-width:468px) {
+         .single_category-container{
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 2rem;
+            row-gap: 3rem;
+        }
+    }
+}

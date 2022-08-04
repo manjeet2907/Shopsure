@@ -60,7 +60,8 @@ export const db = getFirestore();
 // adding shop.js to firebase Database
 export const addCollectionAndDocuments = async (
   collectionKey,
-  objectsToAdd
+  objectsToAdd,
+  field
 ) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
@@ -116,7 +117,8 @@ export const createUserDocumentFromAuth = async (
     }
   }
   // if the instance of userData Exists
-  return userDocRef;
+  // return userDocRef;
+  return userSnapshot;
 };
 
 // signUp or create user with Email and password
@@ -136,6 +138,19 @@ export const signinAuthWithEP = async (email, password) => {
 
 export const signOutUser = async () => await signOut(auth);
 
-export const onAuthStateChangeListner = async (callback) => {
-  await onAuthStateChanged(auth, callback);
+export const onAuthStateChangeListner = (callback) => {
+  onAuthStateChanged(auth, callback);
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
 };

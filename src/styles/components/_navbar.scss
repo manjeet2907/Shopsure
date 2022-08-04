@@ -1,20 +1,22 @@
 nav{
     display: flex;
-    width: 95vw;
+    width: 90vw;
     margin: 1rem auto;
+    line-height: 3rem;
     align-items: center;
     a{
         text-decoration: none;    
         color:black;
-        font-size: 1.8rem;
+        // font-size: 2rem;
         padding: 1rem;
 
     }
     .leftSide_navbar{
         flex:0.2;
-        h4{
+        justify-content: flex-end;
+        h3{
             cursor: pointer;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
     }
     .rightSide_navbar{
@@ -25,6 +27,9 @@ nav{
             cursor: pointer;
             margin-right: 0.2rem;
             padding: 0.3rem;
+            a{
+                font-size: 2rem;
+            }
             .sout{
             text-decoration: none;    
             color:black;

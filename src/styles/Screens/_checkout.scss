@@ -4,15 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px auto 0;
-
+  margin: 5rem auto 0;
   .checkout-header {
     width: 100%;
-    padding: 10px 0;
+    padding: 1rem 0;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid darkgrey;
-
     .header-block {
       text-transform: capitalize;
       width: 23%;
@@ -22,10 +20,17 @@
       }
     }
   }
-
   .total {
-    margin-top: 30px;
+    margin-top: 3rem;
     margin-left: auto;
-    font-size: 36px;
+    font-size: 3.6rem;
   }
+  @media screen and (max-width:768px) {
+    width: 95%;
+    }
+  @media screen and (max-width:468px) {
+    .checkout-header {
+      font-size: 1rem;
+    }
+    }
 }

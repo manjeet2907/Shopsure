@@ -1,6 +1,6 @@
 import CategoryContainer from "../containers/CategoryContainer";
 import Navbar from "./Navbar";
-import Button from "./Button";
+import Button from "./Button/Button";
 import InputData from "./InputData";
 import Footer from "./Footer";
 import CartIcon from "./CartIcon";

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Button, InputData } from "../components";
+import { InputData } from "../components";
+import Button, { BUTTON_TYPE_CLASSES } from "../components/Button/Button";
+import { useDispatch } from "react-redux";
+
 import {
-  signInWithGooglePopup,
-  signinAuthWithEP,
-} from "../utils/firebase/firebase.utils";
+  googleSignInStart,
+  emailSignInStart,
+} from "../reducers/user/userAction";
 
 // import { UserContext } from "../contexts/userContext";
 
@@ -14,6 +17,7 @@ const defaultFormFields = {
 };
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const [formField, setFormField] = useState(defaultFormFields);
 
   const { email, password } = formField;
@@ -24,14 +28,14 @@ const SignIn = () => {
   // sign In code will go here
   // two meathods for signin Google and Email
   const SignInWithGoogleeee = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await signinAuthWithEP(email, password);
+      dispatch(emailSignInStart(email, password));
       setFormField(defaultFormFields);
     } catch (error) {
       switch (error.code) {
@@ -78,7 +82,7 @@ const SignIn = () => {
         <div className='actions'>
           <Button type='submit'>Sign In</Button>
           <Button
-            buttonType='google'
+            buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={SignInWithGoogleeee}
             type='button'>
             Sign In with Google

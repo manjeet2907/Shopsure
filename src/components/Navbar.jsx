@@ -4,16 +4,19 @@ import CartIcon from "./CartIcon";
 import { CartDropdown } from "../containers";
 // import { UserContext } from "../contexts/userContext";
 // import { CartContext } from "../contexts/cartContext";
-import { signOutUser } from "../utils/firebase/firebase.utils";
+// import { signOutUser } from "../utils/firebase/firebase.utils";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { selectCurrentUser } from "../reducers/user/userSelector";
+import { signOutStart } from "../reducers/user/userAction";
 import { selectIsCartOpen } from "../reducers/cart/cartSelector";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch();
 
-  // const { isCartOpen } = useContext(CartContext);
+  const signOutUser = () => dispatch(signOutStart());
 
   return (
     <div className='navbar'>

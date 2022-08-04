@@ -11,16 +11,21 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 // import { CartContext } from "../contexts/cartContext";
 
 const CheckoutItem = ({ cartItem }) => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
   const { name, imageUrl, price, quantity } = cartItem;
+
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector(selectCartItems);
+  // const cartTotal = useSelector(selectCartTotal);
   // // const { clearItemFromCart, addItemToCart, removeItemToCart } = useContext(
   //   CartContext
   // );
 
   const clearItemHandler = () =>
     dispatch(clearItemFromCart(cartItems, cartItem));
-  const addItemHandler = () => dispatch(addItemToCart(cartItems.cartItem));
+
+  const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
+
   const removeItemHandler = () =>
     dispatch(removeItemFromCart(cartItems, cartItem));
 
@@ -29,20 +34,20 @@ const CheckoutItem = ({ cartItem }) => {
       <div className='image-container'>
         <img src={imageUrl} alt={`${name}`} />
       </div>
-      <span className='name'> {name} </span>
+      <h6 className='name'> {name} </h6>
       <span className='quantity'>
-        <div className='arrow' onClick={removeItemHandler}>
+        <p className='arrow' onClick={removeItemHandler}>
           &#10094;
-        </div>
-        <span className='value'>{quantity}</span>
-        <div className='arrow' onClick={addItemHandler}>
+        </p>
+        <p className='value'>{quantity}</p>
+        <p className='arrow' onClick={addItemHandler}>
           &#10095;
-        </div>
+        </p>
       </span>
-      <span className='price'> {price}</span>
-      <div className='remove-button' onClick={clearItemHandler}>
+      <p className='price'> {price}</p>
+      <p className='remove-button' onClick={clearItemHandler}>
         &#10005;
-      </div>
+      </p>
     </div>
   );
 };
